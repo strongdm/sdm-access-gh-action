@@ -1,0 +1,5 @@
+name: 'SDM Access GH Action'
+description: 'Manage access to strongDM resources via Github Actions'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
