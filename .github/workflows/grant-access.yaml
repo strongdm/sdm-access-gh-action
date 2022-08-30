@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: 'SDM Access'
-        uses: actions/wallrony/sdm-access-gh-action@v2
+        uses: actions/sdm-access-gh-action@v2
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
           RUN_ID: ${{ github.run_id }}
