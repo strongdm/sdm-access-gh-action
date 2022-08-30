@@ -9,12 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Build docker image
+        run: docker build -t access-granter < .devcontainer/Dockerfile
 
-      - name: 'SDM Access GH Action'
+      - name: 'SDM Access'
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
           RUN_ID: ${{ github.run_id }}
           ACTOR_NAME: ${{ github.actor }}
-        run: bash entrypoint.sh
+        run: docker run access-granter
