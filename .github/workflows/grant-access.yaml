@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build docker image
-        run: docker build -t access-granter < ./Dockerfile
+        run: docker build -t access-granter .
 
       - name: 'SDM Access'
         env:
