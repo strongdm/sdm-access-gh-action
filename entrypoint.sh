@@ -4,6 +4,8 @@ echo "Checking pending requests..."
 # git config pull.rebase false
 git checkout main
 git pull
+git log
+git diff --help
 git diff --name-only HEAD HEAD~1 | while read line; do 
     resource_name=$(echo $line | awk '/^resources/ { gsub("resources/", "", $0); print $0 }')
     if [ "$resource_name" != "" ]; then
