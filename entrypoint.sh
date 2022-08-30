@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Checking pending requests..."
-# git config pull.rebase false
+git config pull.rebase false
 git checkout main
 git pull
 git log
