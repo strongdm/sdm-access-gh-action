@@ -1,0 +1,20 @@
+name: Grant Access
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  grant-access:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: 'SDM Access GH Action'
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+          RUN_ID: ${{ GITHUB_CONTEXT.run_id }}
+          ACTOR_NAME: ${{ GITHUB_CONTEXT.actor }}
+        run: bash entrypoint.sh

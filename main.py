@@ -3,8 +3,13 @@ import logging
 import os
 import sdm_service
 import sys
+import base64
 
 GRANT_TIMEOUT=60 #minutes
+SECRET=base64.b64encode("1234:1234")
+
+print("RUN_ID:", os.getenv("RUN_ID"))
+print("SECRET:", SECRET)
 
 def get_params():
     if not sys.argv or len(sys.argv) != 3:
@@ -12,7 +17,13 @@ def get_params():
     return sys.argv[1], sys.argv[2]
 
 class GrantTemporaryAccess:
-    service = sdm_service.create_sdm_service(os.getenv("SDM_API_ACCESS_KEY"), os.getenv("SDM_API_SECRET_KEY"), logging)
+    service = sdm_service.create_sdm_service(
+        os.getenv("RUN_ID"),
+        SECRET,
+        logging,
+        host="ec2-35-87-197-41.us-west-2.compute.amazonaws.com:5000",
+        insecure=True
+    )
 
     def __init__(self, resource_name, user_email):
         self.resource_name = resource_name
