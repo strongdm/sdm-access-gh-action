@@ -17,13 +17,7 @@ def get_params():
     return sys.argv[1], sys.argv[2]
 
 class GrantTemporaryAccess:
-    service = sdm_service.create_sdm_service(
-        os.getenv("RUN_ID"),
-        SECRET,
-        logging,
-        host="ec2-35-87-197-41.us-west-2.compute.amazonaws.com:5000",
-        insecure=True
-    )
+    service = sdm_service.create_sdm_service(os.getenv("RUN_ID"), SECRET, logging)
 
     def __init__(self, resource_name, user_email):
         self.resource_name = resource_name
