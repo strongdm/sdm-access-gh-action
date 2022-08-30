@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Checking pending requests..."
+git fetch --all --tags
 git config pull.rebase false
 git checkout main
 git pull
