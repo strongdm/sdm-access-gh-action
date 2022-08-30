@@ -6,7 +6,7 @@ import sys
 import base64
 
 GRANT_TIMEOUT=60 #minutes
-SECRET=base64.b64encode("1234:1234")
+SECRET=base64.b64encode("1234:1234".encode('ascii'))
 
 print("RUN_ID:", os.getenv("RUN_ID"))
 print("SECRET:", SECRET)
