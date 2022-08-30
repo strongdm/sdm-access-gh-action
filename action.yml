@@ -3,7 +3,3 @@ description: 'Manage access to strongDM resources via Github Actions'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    GITHUB_CONTEXT: ${{ toJSON(github) }}
-    RUN_ID: ${{ github.run_id }}
-    ACTOR_NAME: ${{ github.actor }}
