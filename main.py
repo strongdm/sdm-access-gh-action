@@ -7,8 +7,8 @@ import base64
 
 GRANT_TIMEOUT=60 #minutes
 
-ACCESS_KEY = "{}:{}".format(os.getenv("RUN_ID"), os.getenv("AG_SECRET"))
-SECRET_KEY = base64.b64encode("1234".encode('ascii'))
+ACCESS_KEY = "{}:{}".format(os.getenv("RUN_ID"), '')
+SECRET_KEY = base64.b64encode(os.getenv("AG_SECRET").encode())
 
 def get_params():
     if not sys.argv or len(sys.argv) != 3:
