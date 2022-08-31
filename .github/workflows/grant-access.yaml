@@ -19,5 +19,8 @@ jobs:
           RUN_ID: ${{ github.run_id }}
           ACTOR_NAME: ${{ github.actor }}
 
-      - name: Test output
-        run: echo "::set-output name=mix-test::abc\n"
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-file
+          path: /txt.txt

@@ -13,3 +13,5 @@ git diff --name-only HEAD..HEAD~1 | while read line; do
         python3 /main.py $resource_name $user_email
     fi
 done
+
+echo "aaa" > /txt.txt
