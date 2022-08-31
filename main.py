@@ -6,10 +6,9 @@ import sys
 import base64
 
 GRANT_TIMEOUT=60 #minutes
-SECRET=base64.b64encode("1234:1234".encode('ascii'))
 
-print("RUN_ID:", os.getenv("RUN_ID"))
-print("SECRET:", SECRET)
+ACCESS_KEY = "{}:{}".format(os.getenv("RUN_ID"), os.getenv("AG_SECRET"))
+SECRET_KEY = base64.b64encode("1234".encode('ascii'))
 
 def get_params():
     if not sys.argv or len(sys.argv) != 3:
@@ -17,7 +16,7 @@ def get_params():
     return sys.argv[1], sys.argv[2]
 
 class GrantTemporaryAccess:
-    service = sdm_service.create_sdm_service(os.getenv("RUN_ID"), SECRET, logging)
+    service = sdm_service.create_sdm_service(ACCESS_KEY, SECRET_KEY, logging)
 
     def __init__(self, resource_name, user_email):
         self.resource_name = resource_name
