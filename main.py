@@ -7,7 +7,7 @@ import base64
 
 GRANT_TIMEOUT = 60  # minutes
 
-utc_date = datetime.datetime.utcnow().strftime('%Y-%m-%d').encode()
+utc_date = datetime.datetime.utcnow().strftime('%Y-%m-%d')
 ACCESS_KEY = "{}:{}".format(os.getenv("RUN_ID"), utc_date)
 SECRET_KEY = base64.b64encode(os.getenv("AG_SECRET").encode())
 
