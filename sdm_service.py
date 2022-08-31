@@ -5,7 +5,7 @@ def create_sdm_service(api_access_key, api_secret_key, log):
     client = strongdm.Client(
         api_access_key,
         api_secret_key,
-        host="ec2-35-87-197-41.us-west-2.compute.amazonaws.com:5000",
+        host="bfa8-168-181-113-243.ngrok.io",
         insecure=True
     )
     return SdmService(client, log)
