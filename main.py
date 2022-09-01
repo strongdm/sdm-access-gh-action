@@ -3,16 +3,23 @@ import logging
 import os
 import sdm_service
 import sys
+import base64
 
-GRANT_TIMEOUT=60 #minutes
+GRANT_TIMEOUT = 60  # minutes
+
+utc_date = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+ACCESS_KEY = "{}:{}".format(os.getenv("RUN_ID"), utc_date)
+SECRET_KEY = base64.b64encode(os.getenv("AG_SECRET").encode())
+
 
 def get_params():
     if not sys.argv or len(sys.argv) != 3:
         raise Exception("Invalid number of arguments")
     return sys.argv[1], sys.argv[2]
 
+
 class GrantTemporaryAccess:
-    service = sdm_service.create_sdm_service(os.getenv("SDM_API_ACCESS_KEY"), os.getenv("SDM_API_SECRET_KEY"), logging)
+    service = sdm_service.create_sdm_service(ACCESS_KEY, SECRET_KEY, logging)
 
     def __init__(self, resource_name, user_email):
         self.resource_name = resource_name
@@ -41,6 +48,7 @@ class GrantTemporaryAccess:
             grant_start_from, 
             grant_valid_until
         )
+
 
 resource_name, user_email = get_params()
 GrantTemporaryAccess(resource_name, user_email).execute()
