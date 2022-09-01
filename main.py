@@ -24,16 +24,16 @@ class GrantTemporaryAccess:
     def __init__(self, resource_name, user_email):
         self.resource_name = resource_name
         self.user_email = user_email
-        
+
     def __get_resource_id(self):
-        try: 
+        try:
             resource = self.service.get_resource_by_name(self.resource_name)
             return resource.id
         except Exception as e:
             raise Exception(f"Invalid resource name {self.resource_name}") from e
 
     def __get_account_id(self):
-        try: 
+        try:
             account = self.service.get_account_by_email(self.user_email)
             return account.id
         except Exception as e:
@@ -43,9 +43,9 @@ class GrantTemporaryAccess:
         grant_start_from = datetime.datetime.now(datetime.timezone.utc)
         grant_valid_until = grant_start_from + datetime.timedelta(minutes=GRANT_TIMEOUT)
         self.service.grant_temporary_access(
-            self.__get_resource_id(), 
-            self.__get_account_id(), 
-            grant_start_from, 
+            self.__get_resource_id(),
+            self.__get_account_id(),
+            grant_start_from,
             grant_valid_until
         )
 
